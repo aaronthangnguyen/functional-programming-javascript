@@ -5,6 +5,10 @@
     "start": "parcel"
   },
   "devDependencies": {
-    "parcel": "^2.6.0"
+    "hyperscript-helpers": "^3.0.3",
+    "parcel": "^2.6.0",
+    "ramda": "^0.28.0",
+    "uikit": "^3.14.3",
+    "virtual-dom": "^2.1.1"
   }
 }

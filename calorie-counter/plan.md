@@ -10,12 +10,12 @@ meal = {
 };
 
 model = {
-  meals: [],
-  editId: 3,
-  nextId: 1,
   description: 'Dinner',
   calories: 600,
   showForm: false,
+  nextId: 1,
+  editId: 3,
+  meals: [],
 };
 ```
 
