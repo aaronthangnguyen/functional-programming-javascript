@@ -6,6 +6,11 @@
     "build": "parcel build"
   },
   "devDependencies": {
-    "parcel": "^2.6.0"
+    "hyperscript": "^2.0.2",
+    "hyperscript-helpers": "^3.0.3",
+    "parcel": "^2.6.0",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.2",
+    "virtual-dom": "^2.1.1"
   }
 }
