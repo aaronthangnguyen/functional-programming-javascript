@@ -1,0 +1,10 @@
+{
+  "name": "calorie-counter",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel"
+  },
+  "devDependencies": {
+    "parcel": "^2.6.0"
+  }
+}
