@@ -6,6 +6,7 @@ import {
   calorieInputMessage,
   saveMealMessage,
   deleteMealMessage,
+  editMealMessage,
 } from './Update';
 import * as R from 'ramda';
 
@@ -147,6 +148,11 @@ const mealRow = (dispatch, meal) => {
         className: 'fa-solid fa-trash',
         style: 'cursor: pointer',
         onclick: () => dispatch(deleteMealMessage(meal.id)),
+      }),
+      i({
+        className: 'fa-solid fa-pencil',
+        style: 'cursor: pointer',
+        onclick: () => dispatch(editMealMessage(meal.id)),
       }),
     ]),
   ]);
