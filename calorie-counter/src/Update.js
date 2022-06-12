@@ -64,8 +64,9 @@ const update = (message, model) => {
       const { editId } = model;
       const updatedModel =
         editId != null //
-          ? editId(message, model)
+          ? edit(message, model)
           : add(message, model);
+      return updatedModel;
     }
     case MESSAGES.DELETE_MEAL: {
       const { id } = message;
@@ -117,7 +118,7 @@ const edit = (message, model) => {
       return { ...meal, description, calories };
     }
     return meal;
-  });
+  }, model.meals);
 
   return {
     ...model, //

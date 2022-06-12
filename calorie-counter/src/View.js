@@ -104,7 +104,7 @@ const view = (dispatch, model) => {
     h1({ className: 'uk-heading-xsmall uk-margin-bottom	' }, 'CALORIE COUNTER'),
     formView(dispatch, model),
     tableView(dispatch, model.meals),
-    pre(JSON.stringify(model, null, 2)),
+    // pre(JSON.stringify(model, null, 2)),
   ]);
 };
 
@@ -142,10 +142,10 @@ const mealsBody = (dispatch, meals) => {
 const mealRow = (dispatch, meal) => {
   return tr([
     cell(td, '', meal.description), //
-    cell(td, '', meal.calories.toString()),
+    cell(td, '', `${meal.calories}`),
     cell(td, '', [
       i({
-        className: 'fa-solid fa-trash',
+        className: 'fa-solid fa-trash uk-margin-small-right',
         style: 'cursor: pointer',
         onclick: () => dispatch(deleteMealMessage(meal.id)),
       }),
@@ -166,7 +166,7 @@ const totalRow = meals => {
   return tfoot([
     tr([
       cell(td, 'Total: '), //
-      cell(td, total),
+      cell(td, `${total}`),
       cell(td, ''),
     ]),
   ]);
