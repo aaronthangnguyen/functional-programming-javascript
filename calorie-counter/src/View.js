@@ -100,10 +100,7 @@ const formView = (dispatch, model) => {
 
 const view = (dispatch, model) => {
   return div({ className: 'uk-container uk-container-xsmall uk-margin-top' }, [
-    h1(
-      { className: 'uk-heading-xsmall uk-heading-divider' },
-      'Calorie Counter'
-    ),
+    h1({ className: 'uk-heading-xsmall uk-margin-bottom	' }, 'CALORIE COUNTER'),
     formView(dispatch, model),
     tableView(dispatch, model.meals),
     pre(JSON.stringify(model, null, 2)),
@@ -116,8 +113,8 @@ const cell = (tag, className, value) => {
 
 const tableView = (dispatch, meals) => {
   return meals.length < 1
-    ? div({ className: 'uk-margin-small-top' }, 'No meal to display...')
-    : table({ className: 'uk-table uk-table-striped' }, [
+    ? div({ className: 'uk-margin-top' }, 'No meal to display...')
+    : table({ className: 'uk-table uk-table-striped uk-margin-top' }, [
         tableHeader,
         mealsBody(dispatch, meals),
         totalRow(meals),
