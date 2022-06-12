@@ -5,9 +5,27 @@ import {
   mealInputMessage,
   calorieInputMessage,
   saveMealMessage,
+  deleteMealMessage,
 } from './Update';
+import * as R from 'ramda';
 
-const { pre, div, h1, button, form, label, input } = hh(h);
+const {
+  pre,
+  div,
+  h1,
+  button,
+  form,
+  label,
+  input,
+  table,
+  thead,
+  tbody,
+  tfoot,
+  tr,
+  th,
+  td,
+  i,
+} = hh(h);
 
 const buttonSet = dispatch => {
   return div([
@@ -87,7 +105,67 @@ const view = (dispatch, model) => {
       'Calorie Counter'
     ),
     formView(dispatch, model),
+    tableView(dispatch, model.meals),
     pre(JSON.stringify(model, null, 2)),
+  ]);
+};
+
+const cell = (tag, className, value) => {
+  return tag(className, value);
+};
+
+const tableView = (dispatch, meals) => {
+  return meals.length < 1
+    ? div({ className: 'uk-margin-small-top' }, 'No meal to display...')
+    : table({ className: 'uk-table uk-table-striped' }, [
+        tableHeader,
+        mealsBody(dispatch, meals),
+        totalRow(meals),
+      ]);
+};
+
+const tableHeader = thead([
+  tr([
+    cell(th, '', 'Meal'), //
+    cell(th, '', 'Calories'),
+    cell(th, '', ''),
+  ]),
+]);
+
+const mealsBody = (dispatch, meals) => {
+  const rows = R.map(
+    R.partial(mealRow, [dispatch]), //
+    meals
+  );
+
+  return tbody(rows);
+};
+
+const mealRow = (dispatch, meal) => {
+  return tr([
+    cell(td, '', meal.description), //
+    cell(td, '', meal.calories.toString()),
+    cell(td, '', [
+      i({
+        className: 'fa-solid fa-trash',
+        style: 'cursor: pointer',
+        onclick: () => dispatch(deleteMealMessage(meal.id)),
+      }),
+    ]),
+  ]);
+};
+
+const totalRow = meals => {
+  const total = R.pipe(
+    R.map(meal => meal.calories),
+    R.sum
+  )(meals);
+  return tfoot([
+    tr([
+      cell(td, 'Total: '), //
+      cell(td, total),
+      cell(td, ''),
+    ]),
   ]);
 };
 

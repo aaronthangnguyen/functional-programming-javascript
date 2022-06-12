@@ -5,6 +5,7 @@ const MESSAGES = {
   MEAL_INPUT: 'MEAL_INPUT',
   CALORIES_INPUT: 'CALORIES_INPUT',
   SAVE_MEAL: 'SAVE_MEAL',
+  DELETE_MEAL: 'DELETE_MEAL',
 };
 
 const showFormMessage = showForm => {
@@ -30,6 +31,13 @@ const calorieInputMessage = calories => {
 
 const saveMealMessage = { type: MESSAGES.SAVE_MEAL };
 
+const deleteMealMessage = id => {
+  return {
+    type: MESSAGES.DELETE_MEAL,
+    id,
+  };
+};
+
 const update = (message, model) => {
   switch (message.type) {
     case MESSAGES.SHOW_FORM: {
@@ -46,6 +54,14 @@ const update = (message, model) => {
     }
     case MESSAGES.SAVE_MEAL: {
       return add(message, model);
+    }
+    case MESSAGES.DELETE_MEAL: {
+      const { id } = message;
+      const meals = R.filter(
+        meal => meal.id !== id, //
+        model.meals
+      );
+      return { ...model, meals };
     }
   }
   return model;
@@ -70,5 +86,6 @@ export {
   mealInputMessage,
   calorieInputMessage,
   saveMealMessage,
+  deleteMealMessage,
 };
 export default update;
